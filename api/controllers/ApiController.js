@@ -43,7 +43,7 @@ module.exports = {
 
     //end_parsed will be emitted once parsing finished
     csvConverter.on("end_parsed",function(jsonObj){
-       return res.json(jsonObj);
+       return res.json(jsonObj["csvRows"]);
     });
 
     //read from file
@@ -64,17 +64,17 @@ module.exports = {
 
           return res.json(result);
         } else {
-          console.log(" NO CACHE")
+          console.log(" NO CACHE FOUND")
           var csvConverter=new Converter();
 
           //end_parsed will be emitted once parsing finished
           csvConverter.on("end_parsed",function(jsonObj){
-            getstoptimeData = jsonObj;
+            var getstoptimeData = jsonObj["csvRows"];
 
-            console.log(" Cache the data")
-            memory_cache.set(id, jsonObj);
+            console.log(" Caching the data")
+            memory_cache.set(id, getstoptimeData);
 
-            return res.json(jsonObj);
+            return res.json(getstoptimeData);
           });
 
           //read from file
