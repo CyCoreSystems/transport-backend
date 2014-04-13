@@ -1,0 +1,26 @@
+{
+  "name": "navdash",
+  "private": true,
+  "version": "0.0.0",
+  "description": "navdash",
+  "dependencies": {
+    "sails": "0.9.11",
+    "grunt": "0.4.1",
+    "sails-disk": "~0.9.0",
+    "ejs": "0.8.4",
+    "optimist": "0.3.4",
+    "client-http": "0.0.6",
+    "request-json": "^0.4.10",
+    "csvtojson": "^0.2.2",
+    "sails-redis": "^0.9.3",
+    "cache-manager": "^0.3.0"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "debug": "node debug app.js"
+  },
+  "main": "app.js",
+  "repository": "",
+  "author": "",
+  "license": ""
+}
