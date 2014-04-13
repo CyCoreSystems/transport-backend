@@ -37,25 +37,13 @@ module.exports = {
     });
   },
 
-  getstop:function (req,res) {
-    //new converter instance
-    var csvConverter=new Converter();
 
-    //end_parsed will be emitted once parsing finished
-    csvConverter.on("end_parsed",function(jsonObj){
-       return res.json(jsonObj["csvRows"]);
-    });
-
-    //read from file
-    csvConverter.from('./data/stops.txt');
-  },
-
-  getstoptime:function(req,res) {
+  getstops:function(req,res) {
     var maxAge = 86400; //24 hours
     if (!res.getHeader('Cache-Control'))
       res.setHeader('Cache-Control', 'public, max-age=' + maxAge);
 
-    var id = "stop_times";
+    var id = "stop";
 
     memory_cache.get(id, function (err, result) {
 
@@ -78,11 +66,60 @@ module.exports = {
           });
 
           //read from file
-          csvConverter.from('./data/stop_times.txt');
+          csvConverter.from('./data/stops.txt');
         }
 
     });
   },
+
+
+  // getstop:function (req,res) {
+  //   //new converter instance
+  //   var csvConverter=new Converter();
+
+  //   //end_parsed will be emitted once parsing finished
+  //   csvConverter.on("end_parsed",function(jsonObj){
+  //      return res.json(jsonObj["csvRows"]);
+  //   });
+
+  //   //read from file
+  //   csvConverter.from('./data/stops.txt');
+  // },
+
+
+  // getstoptime:function(req,res) {
+  //   var maxAge = 86400; //24 hours
+  //   if (!res.getHeader('Cache-Control'))
+  //     res.setHeader('Cache-Control', 'public, max-age=' + maxAge);
+
+  //   var id = "stop_times";
+
+  //   memory_cache.get(id, function (err, result) {
+
+  //       if (!err && result) {
+  //         console.log(" WE HAVE CACHE - " + id)
+
+  //         return res.json(result);
+  //       } else {
+  //         console.log(" NO CACHE FOUND - " + id)
+  //         var csvConverter=new Converter();
+
+  //         //end_parsed will be emitted once parsing finished
+  //         csvConverter.on("end_parsed",function(jsonObj){
+  //           var getstoptimeData = jsonObj["csvRows"];
+
+  //           console.log(" Caching the data - " + id)
+  //           memory_cache.set(id, getstoptimeData);
+
+  //           return res.json(getstoptimeData);
+  //         });
+
+  //         //read from file
+  //         csvConverter.from('./data/stop_times.txt');
+  //       }
+
+  //   });
+  // },
 
   getagency:function(req,res) {
     var maxAge = 86400; //24 hours
