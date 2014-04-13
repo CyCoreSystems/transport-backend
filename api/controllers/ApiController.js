@@ -60,18 +60,18 @@ module.exports = {
     memory_cache.get(id, function (err, result) {
 
         if (!err && result) {
-          console.log(" WE HAVE CACHE")
+          console.log(" WE HAVE CACHE - " + id)
 
           return res.json(result);
         } else {
-          console.log(" NO CACHE FOUND")
+          console.log(" NO CACHE FOUND - " + id)
           var csvConverter=new Converter();
 
           //end_parsed will be emitted once parsing finished
           csvConverter.on("end_parsed",function(jsonObj){
             var getstoptimeData = jsonObj["csvRows"];
 
-            console.log(" Caching the data")
+            console.log(" Caching the data - " + id)
             memory_cache.set(id, getstoptimeData);
 
             return res.json(getstoptimeData);
@@ -83,6 +83,212 @@ module.exports = {
 
     });
   },
+
+  getagency:function(req,res) {
+    var maxAge = 86400; //24 hours
+    if (!res.getHeader('Cache-Control'))
+      res.setHeader('Cache-Control', 'public, max-age=' + maxAge);
+
+    var id = "agency";
+
+    memory_cache.get(id, function (err, result) {
+
+        if (!err && result) {
+          console.log(" WE HAVE CACHE - " + id)
+
+          return res.json(result);
+        } else {
+          console.log(" NO CACHE FOUND - " + id)
+          var csvConverter=new Converter();
+
+          //end_parsed will be emitted once parsing finished
+          csvConverter.on("end_parsed",function(jsonObj){
+            var getstoptimeData = jsonObj["csvRows"];
+
+            console.log(" Caching the data - " + id)
+            memory_cache.set(id, getstoptimeData);
+
+            return res.json(getstoptimeData);
+          });
+
+          //read from file
+          csvConverter.from('./data/agency.txt');
+        }
+
+    });
+  },
+
+  getcalendar:function(req,res) {
+    var maxAge = 86400; //24 hours
+    if (!res.getHeader('Cache-Control'))
+      res.setHeader('Cache-Control', 'public, max-age=' + maxAge);
+
+    var id = "calendar";
+
+    memory_cache.get(id, function (err, result) {
+
+        if (!err && result) {
+          console.log(" WE HAVE CACHE - " + id)
+
+          return res.json(result);
+        } else {
+          console.log(" NO CACHE FOUND - " + id)
+          var csvConverter=new Converter();
+
+          //end_parsed will be emitted once parsing finished
+          csvConverter.on("end_parsed",function(jsonObj){
+            var getstoptimeData = jsonObj["csvRows"];
+
+            console.log(" Caching the data - " + id)
+            memory_cache.set(id, getstoptimeData);
+
+            return res.json(getstoptimeData);
+          });
+
+          //read from file
+          csvConverter.from('./data/calendar.txt');
+        }
+
+    });
+  },
+
+  getcalendardates:function(req,res) {
+    var maxAge = 86400; //24 hours
+    if (!res.getHeader('Cache-Control'))
+      res.setHeader('Cache-Control', 'public, max-age=' + maxAge);
+
+    var id = "calendardates";
+
+    memory_cache.get(id, function (err, result) {
+
+        if (!err && result) {
+          console.log(" WE HAVE CACHE - " + id)
+
+          return res.json(result);
+        } else {
+          console.log(" NO CACHE FOUND - " + id)
+          var csvConverter=new Converter();
+
+          //end_parsed will be emitted once parsing finished
+          csvConverter.on("end_parsed",function(jsonObj){
+            var getstoptimeData = jsonObj["csvRows"];
+
+            console.log(" Caching the data - " + id)
+            memory_cache.set(id, getstoptimeData);
+
+            return res.json(getstoptimeData);
+          });
+
+          //read from file
+          csvConverter.from('./data/calendar_dates.txt');
+        }
+
+    });
+  },
+
+  getroutes:function(req,res) {
+    var maxAge = 86400; //24 hours
+    if (!res.getHeader('Cache-Control'))
+      res.setHeader('Cache-Control', 'public, max-age=' + maxAge);
+
+    var id = "routes";
+
+    memory_cache.get(id, function (err, result) {
+
+        if (!err && result) {
+          console.log(" WE HAVE CACHE - " + id)
+
+          return res.json(result);
+        } else {
+          console.log(" NO CACHE FOUND - " + id)
+          var csvConverter=new Converter();
+
+          //end_parsed will be emitted once parsing finished
+          csvConverter.on("end_parsed",function(jsonObj){
+            var getstoptimeData = jsonObj["csvRows"];
+
+            console.log(" Caching the data - " + id)
+            memory_cache.set(id, getstoptimeData);
+
+            return res.json(getstoptimeData);
+          });
+
+          //read from file
+          csvConverter.from('./data/routes.txt');
+        }
+
+    });
+  },
+
+  getshapes:function(req,res) {
+    var maxAge = 86400; //24 hours
+    if (!res.getHeader('Cache-Control'))
+      res.setHeader('Cache-Control', 'public, max-age=' + maxAge);
+
+    var id = "shapes";
+
+    memory_cache.get(id, function (err, result) {
+
+        if (!err && result) {
+          console.log(" WE HAVE CACHE - " + id)
+
+          return res.json(result);
+        } else {
+          console.log(" NO CACHE FOUND - " + id)
+          var csvConverter=new Converter();
+
+          //end_parsed will be emitted once parsing finished
+          csvConverter.on("end_parsed",function(jsonObj){
+            var getstoptimeData = jsonObj["csvRows"];
+
+            console.log(" Caching the data - " + id)
+            memory_cache.set(id, getstoptimeData);
+
+            return res.json(getstoptimeData);
+          });
+
+          //read from file
+          csvConverter.from('./data/shapes.txt');
+        }
+
+    });
+  },
+
+  gettrips:function(req,res) {
+    var maxAge = 86400; //24 hours
+    if (!res.getHeader('Cache-Control'))
+      res.setHeader('Cache-Control', 'public, max-age=' + maxAge);
+
+    var id = "trips";
+
+    memory_cache.get(id, function (err, result) {
+
+        if (!err && result) {
+          console.log(" WE HAVE CACHE - " + id)
+
+          return res.json(result);
+        } else {
+          console.log(" NO CACHE FOUND - " + id)
+          var csvConverter=new Converter();
+
+          //end_parsed will be emitted once parsing finished
+          csvConverter.on("end_parsed",function(jsonObj){
+            var getstoptimeData = jsonObj["csvRows"];
+
+            console.log(" Caching the data - " + id)
+            memory_cache.set(id, getstoptimeData);
+
+            return res.json(getstoptimeData);
+          });
+
+          //read from file
+          csvConverter.from('./data/trips.txt');
+        }
+
+    });
+  },
+
+
 
   /**
    * Overrides for the settings in `config/controllers.js`
